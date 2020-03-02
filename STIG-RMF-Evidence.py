@@ -79,7 +79,6 @@ def vid_with_evidence():
         for cci in ccis:
             if cci_evidence.get(cci, None):
                 results[vid].extend(cci_evidence[cci])
-    # print(results)
     return results
 
 
@@ -93,8 +92,7 @@ def results_format():
     for vid, evidence in results.items():
         parent = ET.SubElement(top, "V-ID", text=vid)
         for evi in evidence:
-            # print(vid, evidence)
-            child = ET.SubElement(parent, "Evidence", text=evi)
+            ET.SubElement(parent, "Evidence", text=evi)
         mydata = ET.tostring(top)
     file = open(str(args.output) + ".xml", "w")
     file.write(mydata)
